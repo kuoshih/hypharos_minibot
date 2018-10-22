@@ -17,7 +17,7 @@ Date: 2018/10/22
 License: Apache 2.0  
 
 
-##Compile the code
+## Compile the code
 $ cd catkin_ws/src  
 $ git clone https://github.com/kuoshih/hypharos_minibot   
 $ cd ..  
@@ -29,7 +29,10 @@ Unzip hypharos_minibot.zip to replace the original code.
 $cd catkin_ws  
 $catkin_make  
 
-##Run the code   
+## Run the code   
 $roslaunch hypharos_minibot project_sample.launch
+
+## Edit code  
+You can edit src/main.cpp for your project.
 
 More information about Minibot can be found https://github.com/Hypha-ROS/hypharos_minibot.   
