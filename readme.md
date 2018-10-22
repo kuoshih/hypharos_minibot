@@ -2,17 +2,18 @@
 ![alt text](https://github.com/Hypha-ROS/hypharos_minibot/blob/master/document/HyphaROS_MiniBot_photo.jpg)  
 
 ## Abstract
-This is a sample code for final projects using HyphaROS Minibot.   
+This code is for final projects of MA5039 Perception and Estimation in Robotics.
+It is a sample code based on HyphaROS Minibot.   
 This code activate a node "main" and the other sensor nodes. 
 Main node subscribes three topics -- imu_data, odom, and scan. 
-You can access data from three Callback functions.
+You can access data from three Callback functions in src/main.cpp.
 
 
 ## About us
-Contact: kuoshih@math.ncu.edu.tw
-Developer:   
-* Kuo-Shih Tseng
 
+Developer:   
+* Kuo-Shih Tseng   
+Contact: kuoshih@math.ncu.edu.tw   
 Date: 2018/10/22  
 License: Apache 2.0  
 
