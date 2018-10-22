@@ -73,21 +73,11 @@ $ git clone https://github.com/Hypha-ROS/hypharos_minibot
 $ cd ..  
 $ catkin_make  
 
-## Operation
-### Ethernet Connection
-The default static eth IP on Pi3 image is 10.0.0.1, hence, to connect to your Pi3 through cable, please set your host IP as 10.0.0.X  
-Notice: for the first bootup, you have to update Pi3 MAC address through HDMI Dispaly!  
 
-### Wifi Connection
-Use ethernet or display connection to make Pi3 connect to your local Wifi AP. Remember to set ROS_MASTER_URI and ROS_IP in .bashrc file in Pi3 image home folder.    
+Download this this code to pi\catkin_ws\src.
+unzip hypharos_minibot.zip to replace the original code.
 
-### Mapping
-$ roslaunch hypharos_minibot HyphaROS_MiniBot_Gmapping.launch  
-OR  
-$ roslaunch hypharos_minibot HyphaROS_MiniBot_ICP.launch  
+Run the code 
+$roslaunch hypharos_minibot project_sample.launch
 
-### Navigation
-After mapping and modify two maps file (one for amcl, one for  
-nav) in map folder located in hypharos pkg, execute the command:  
-$ roslaunch hypharos_minibot HyphaROS_MiniBot_Nav.launch  
 
