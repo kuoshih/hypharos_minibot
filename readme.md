@@ -35,4 +35,5 @@ $roslaunch hypharos_minibot project_sample.launch
 ## Edit code  
 You can edit src/main.cpp for your project.
 
+## About Minibot
 More information about Minibot can be found https://github.com/Hypha-ROS/hypharos_minibot.   
