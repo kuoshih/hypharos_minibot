@@ -74,10 +74,10 @@ $ cd ..
 $ catkin_make  
 
 
-Download this this code to pi\catkin_ws\src.
-unzip hypharos_minibot.zip to replace the original code.
+Download this this code to pi\catkin_ws\src.   
+Unzip hypharos_minibot.zip to replace the original code.
 
-Run the code 
+Run the code    
 $roslaunch hypharos_minibot project_sample.launch
 
 
