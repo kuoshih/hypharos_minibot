@@ -3,7 +3,7 @@
 
 ## Abstract
 This code is for final projects of MA5039 Perception and Estimation in Robotics.
-It is a sample code based on HyphaROS Minibot.   
+It is a sample code based on HyphaROS Minibot.
 This code activate a node "main" and the other sensor nodes. 
 Main node subscribes three topics -- imu_data, odom, and scan. 
 You can access data from three Callback functions in src/main.cpp.
