@@ -19,6 +19,6 @@
     <node name="main" pkg="hypharos_minibot" type="main"  output="screen">
     </node>
 
-
+    <node pkg="tf" type="static_transform_publisher" name="base2target" args="0 0 0 0 0 0 /base_footprint /target 100" />
 
 </launch>
