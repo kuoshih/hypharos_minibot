@@ -5,6 +5,7 @@
  This node subscribes three topics -- imu_data, odom, and scan. 
  You can access data from three Callback functions.
  $Revision: 1.0 $,  2018.07.24 
+ $Revision: 1.1 $,  2018.12.20, add a maker for users 
  
 
  Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,13 +27,29 @@
 #include "sensor_msgs/Imu.h"
 #include "nav_msgs/Odometry.h"
 #include "sensor_msgs/LaserScan.h"
+#include <visualization_msgs/Marker.h>
 #define RAD2DEG(x) ((x)*180./M_PI)
 
+void callback1(const ros::TimerEvent&);
+void init_marker(void);
 
-/**
- * This tutorial demonstrates simple receipt of messages over the ROS system.
- */
-// %Tag(CALLBACK)%
+visualization_msgs::Marker marker;
+uint32_t shape = visualization_msgs::Marker::CYLINDER;
+ros::Publisher marker_pub;
+int counter=0;
+
+void callback1(const ros::TimerEvent&)
+{// update maker location and publish it. 
+    float x=1*cos(0.174*counter);
+    float y=1*sin(0.174*counter);
+    marker.pose.position.x = x;
+    marker.pose.position.y = y;
+    //ROS_INFO("x=%f,y=%f\n",x,y);
+    counter++;
+
+    marker_pub.publish(marker);
+}
+
 void odomCallback(const nav_msgs::Odometry::ConstPtr& msg)
 {
     ROS_INFO("Vel-> Linear: [%f], Angular: [%f]", msg->twist.twist.linear.x,msg->twist.twist.angular.z);
@@ -63,7 +80,6 @@ void scanCallback(const sensor_msgs::LaserScan::ConstPtr& scan)
     
 }
 
-// %EndTag(CALLBACK)%
 
 int main(int argc, char **argv)
 {
@@ -85,6 +101,7 @@ int main(int argc, char **argv)
    * NodeHandle destructed will close down the node.
    */
   ros::NodeHandle n;
+  //ros::Rate r(1);
 
   /**
    * The subscribe() call is how you tell ROS that you want to receive messages
@@ -101,21 +118,70 @@ int main(int argc, char **argv)
    * is the number of messages that will be buffered up before beginning to throw
    * away the oldest ones.
    */ 
-// %Tag(SUBSCRIBER)%
+
   ros::Subscriber sub2 = n.subscribe("/imu_data", 1000, imuCallback);
   ros::Subscriber sub3 = n.subscribe("/odom", 1000, odomCallback);
   ros::Subscriber sub4 = n.subscribe<sensor_msgs::LaserScan>("/scan", 1000, scanCallback);
-// %EndTag(SUBSCRIBER)%
+
+  // create a timer callback
+  ros::Timer timer1 = n.createTimer(ros::Duration(0.1), callback1);
+  // create a topic "visualization_marker"
+  marker_pub = n.advertise<visualization_msgs::Marker>("visualization_marker", 1);
+
+  init_marker();
 
   /**
    * ros::spin() will enter a loop, pumping callbacks.  With this version, all
    * callbacks will be called from within this thread (the main one).  ros::spin()
    * will exit when Ctrl-C is pressed, or the node is shutdown by the master.
    */
-// %Tag(SPIN)%
+
   ros::spin();
-// %EndTag(SPIN)%
+
 
   return 0;
 }
-// %EndTag(FULLTEXT)%
+
+void init_marker(void)
+{
+    // Initialize maker's setting.
+    // Set the frame ID and timestamp.  See the TF tutorials for information on these.
+    marker.header.frame_id = "/target";
+    marker.header.stamp = ros::Time::now();
+
+    // Set the namespace and id for this marker.  This serves to create a unique ID
+    // Any marker sent with the same namespace and id will overwrite the old one
+    marker.ns = "basic_shapes";
+    marker.id = 0;
+    // Set the marker type.  Initially this is CUBE, and cycles between that and SPHERE, ARROW, and CYLINDER
+    marker.type = shape;
+
+    // Set the marker action.  Options are ADD, DELETE, and new in ROS Indigo: 3 (DELETEALL)
+    // Tag(ACTION)
+    marker.action = visualization_msgs::Marker::ADD;
+
+    // Set the pose of the marker.  This is a full 6DOF pose relative to the frame/time specified in the header
+    //Tag(POSE)
+    marker.pose.position.x = 0;
+    marker.pose.position.y = 0;
+    marker.pose.position.z = 0;
+    marker.pose.orientation.x = 0.0;
+    marker.pose.orientation.y = 0.0;
+    marker.pose.orientation.z = 0.0;
+    marker.pose.orientation.w = 1.0;
+
+    // Set the scale of the marker -- 1x1x1 here means 1m on a side
+    marker.scale.x = 0.1;
+    marker.scale.y = 0.1;
+    marker.scale.z = 0.2;
+
+    // Set the color -- be sure to set alpha to something non-zero!
+    marker.color.r = 0.0f;
+    marker.color.g = 1.0f;
+    marker.color.b = 0.0f;
+    marker.color.a = 1.0;
+
+    //Tag(LIFETIME)
+    marker.lifetime = ros::Duration();
+
+}
