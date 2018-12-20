@@ -7,7 +7,8 @@ It is a sample code based on HyphaROS Minibot.
 This code activate a node "main" and the other sensor nodes. 
 Main node subscribes three topics -- imu_data, odom, and scan. 
 You can access data from three Callback functions in src/main.cpp.
-
+There is a maker for landmarks or targets.
+You can see it in rviz.
 
 ## About us
 
