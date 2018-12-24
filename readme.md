@@ -37,7 +37,7 @@ $roslaunch hypharos_minibot project_sample.launch
 ## rviz
 $rviz  
 Press "add" button in rviz, then select "marker"  
-
+Set fixed frame as "target"  
 ![alt text](https://github.com/kuoshih/hypharos_minibot/blob/master/document/target.png)  
 ## Edit code  
 You can edit src/main.cpp for your project.
