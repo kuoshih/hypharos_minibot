@@ -34,6 +34,11 @@ $catkin_make
 ## Run the code   
 $roslaunch hypharos_minibot project_sample.launch
 
+## rviz
+$rviz  
+Press "add" button in rviz, then select "marker"  
+
+![alt text](https://github.com/Hypha-ROS/hypharos_minibot/blob/master/document/logo/HyphaROS_logo_2.png)  
 ## Edit code  
 You can edit src/main.cpp for your project.
 
