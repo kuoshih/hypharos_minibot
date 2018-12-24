@@ -38,7 +38,7 @@ $roslaunch hypharos_minibot project_sample.launch
 $rviz  
 Press "add" button in rviz, then select "marker"  
 
-![alt text](https://github.com/Hypha-ROS/hypharos_minibot/blob/master/document/rviz.png)  
+![alt text](https://github.com/Hypha-ROS/hypharos_minibot/blob/master/document/target.png)  
 ## Edit code  
 You can edit src/main.cpp for your project.
 
